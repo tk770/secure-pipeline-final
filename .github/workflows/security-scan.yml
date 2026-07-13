@@ -1,0 +1,15 @@
+name: Security Scan Pipeline
+on: [push]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run TruffleHog Secrets Scanner
+        uses: trufflesecurity/trufflehog-actions-scan@v2
+        with:
+          base: ""
+          head: ${{ github.ref_name }}
